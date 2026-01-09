@@ -46,3 +46,15 @@ kubectl get pod employeeapi-deployment-54bf97f88f-zfhhc -n default -o wide
 kubectl describe node aks-agentpool-20056985-vmss000001 | egrep -i "Operating System|Architecture|OS Image|containerRuntime"
 
 Linux / arm64
+
+///////////////////////////////////////////////STOP AKS WHEN NOT IN USE ///////////////////////////////////////////////////
+
+To Stop AKS :
+az aks stop --name <cluster-name> --resource-group <resource-group>
+
+To restart AKS :
+az aks start --name <cluster-name> --resource-group <resource-group>
+
+Update ACR to basic
+
+az acr update --name <registry-name> --sku Basic
