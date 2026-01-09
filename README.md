@@ -51,7 +51,7 @@ Linux / arm64
 
 To Stop AKS :
 az aks stop --name <cluster-name> --resource-group <resource-group>
-
+EXAMPLE : az aks stop --name 08DemoApp --resource-group RG24Dec
 To restart AKS :
 az aks start --name <cluster-name> --resource-group <resource-group>
 
