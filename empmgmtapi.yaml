@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: employeeapi-deployment
+  labels:
+    app: employeeapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: employeeapi
+  template:
+    metadata:
+      labels:
+        app: employeeapi
+    spec:
+      containers:
+        - name: employeeapi
+          image: 08jandemo.azurecr.io/employeeapi:v1
+          imagePullPolicy: IfNotPresent          
+          ports:
+            - containerPort: 8080
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Development
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "0.1"
+            limits:
+              memory: "128Mi"
+              cpu: "0.3"
+      imagePullSecrets:
+        - name: acr-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: employeeapi-service
+spec:  
+  selector:
+    app: employeeapi
+  ports:
+    - protocol: TCP
+      port: 8080
